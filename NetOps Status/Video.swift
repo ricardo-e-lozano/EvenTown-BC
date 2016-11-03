@@ -8,19 +8,52 @@
 
 import UIKit
 
-class Video: NSObject {
+class SafeJsonObject: NSObject {
+    override func setValue(_ value: Any?, forKey key: String) {
+        let uppercasedFirstCharacter = String(key.characters.first!).uppercased()
+        
+        let range = Range(uncheckedBounds: (key.startIndex, key.index(key.startIndex, offsetBy: 1)))
+        
+        
+        let selectorString = key.replacingCharacters(in: range, with: uppercasedFirstCharacter)
+        let selector = NSSelectorFromString("set\(selectorString):")
+        let responds = self.responds(to: selector)
+        if !responds {
+            return
+        }
+        super.setValue(value, forKey: key)
+    }
+}
+
+class Video: SafeJsonObject {
     
-    var thumbnailImageName: String?
+    var thumbnail_image_name: String?
     var title: String?
-    var numberOfViews: NSNumber?
-    var uploadDate: NSDate?
+    var number_of_views: NSNumber?
+    var upload_date: NSDate?
+    var duration: NSNumber?
     
     var channel: Channel?
     
+    override func setValue(_ value: Any?, forKey key: String) {
+        if key == "channel" {
+            //custom channel setup
+            self.channel = Channel()
+            channel?.setValuesForKeys(value as! [String: Any])
+        } else {
+            super.setValue(value, forKey: key)    
+        }
+        
+    }
+    
+    init(dictionary: [String: Any]) {
+        super.init()
+        setValuesForKeys(dictionary)
+    }
     
 }
 
-class Channel: NSObject {
+class Channel: SafeJsonObject {
     var name: String?
-    var profileImageName: String?
+    var profile_image_name: String?
 }
