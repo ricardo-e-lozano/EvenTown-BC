@@ -13,6 +13,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let cellId = "cellId"
     let trendingCellId = "trendingCellId"
     let subscriptionCellId = "subscriptionCellId"
+    let accountCellId = "accountCellId"
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
 
 
@@ -44,6 +45,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
         collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        collectionView?.register(AccountCell.self, forCellWithReuseIdentifier: accountCellId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
@@ -150,6 +152,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             identifier = trendingCellId
         } else if indexPath.item == 2 {
             identifier = subscriptionCellId
+        } else if indexPath.item == 3 {
+            identifier = accountCellId
         } else {
             identifier = cellId
         }

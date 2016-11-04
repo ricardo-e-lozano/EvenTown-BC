@@ -67,7 +67,6 @@ class VideoCell: BaseCell {
     
     let thumbnailImageView: CustomImageView = {
         let imageView = CustomImageView()
-        //        imageView.backgroundColor = UIColor.blue
         imageView.image = UIImage(named: "blankSpace")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -76,7 +75,6 @@ class VideoCell: BaseCell {
     
     let userProfileImageView: CustomImageView = {
         let imageView = CustomImageView()
-        //        imageView.backgroundColor = UIColor.green
         imageView.image = UIImage(named: "blankSpace")
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
