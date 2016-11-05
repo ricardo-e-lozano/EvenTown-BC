@@ -29,7 +29,7 @@ class AccountCell: BaseCell {
     let profileNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Ricardo E. Lozano"
+        label.text = "Ricardo Lozano"
         label.textColor = .darkGray
         return label
     }()
