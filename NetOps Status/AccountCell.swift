@@ -18,6 +18,7 @@ class AccountCell: BaseCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.loadImageUsingUrlString(urlString: "https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/14947714_10154770552714684_4752187345928028670_n.jpg?oh=3716248d87482097e380a478e98c91fa&oe=58D1B94E")
 //        imageView.loadImageUsingUrlString(urlString: "https://scontent.felp1-1.fna.fbcdn.net/t31.0-8/14883500_10154755553699684_8529061120782653789_o.jpg")
+        imageView.image = UIImage(named: "slide_menu")
         imageView.layer.cornerRadius = 15
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill

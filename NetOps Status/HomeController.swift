@@ -91,7 +91,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
 
     func handleSearch() {
-        scrollToMenuIndex(menuIndex: 2)
+        print("Search here")
     }
 
     func scrollToMenuIndex(menuIndex: Int) {
