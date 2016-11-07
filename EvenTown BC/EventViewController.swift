@@ -25,10 +25,10 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         view.addSubview(eventImage)
-        eventImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        eventImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        eventImage.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
-        eventImage.heightAnchor.constraint(equalToConstant: frame.width * 9 / 16).isActive = true
+//        eventImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+//        eventImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+//        eventImage.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
+//        eventImage.heightAnchor.constraint(equalToConstant: frame.width * 9 / 16).isActive = true
 
     
     
