@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIApplicationDelegate {
     
@@ -81,9 +82,19 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         navController = window?.rootViewController as! UINavigationController?
         
         let eventViewController = EventViewController()
-        eventViewController.navigationItem.title = (video?.title)! as String
-        eventViewController.setEventImage(imageUrl: (video?.thumbnail_image_name)! as String )
-        eventViewController.view.backgroundColor = .darkGray
+        let title = (video?.title)! as String
+        let eventImageURL = (video?.thumbnail_image_name)! as String
+        let hostName = (video?.channel?.name)! as String
+        let eventLocation = CLLocation(latitude: 32.6316, longitude: -115.3859)
+        let eventAnnotation = Artwork(title: title, locationName: hostName, discipline: "Event", coordinate: eventLocation.coordinate)
+        
+        
+        eventViewController.navigationItem.title = title
+        eventViewController.setTitleLabel(title: title)
+        eventViewController.setEventImage(imageUrl: eventImageURL )
+        eventViewController.mapView.addAnnotation(eventAnnotation)
+        eventViewController.setEventLocation(location: eventLocation)
+        eventViewController.view.backgroundColor = .white
         
         self.navController?.navigationBar.tintColor = UIColor.white
         self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]

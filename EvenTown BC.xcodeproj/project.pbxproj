@@ -26,6 +26,7 @@
 		84C34F3E1DAFE8B000DCC04C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84C34F3C1DAFE8B000DCC04C /* LaunchScreen.storyboard */; };
 		84E9DF0D1DCD729B00037150 /* EventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DF0C1DCD729B00037150 /* EventsCell.swift */; };
 		84E9DF0F1DCD79B500037150 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DF0E1DCD79B500037150 /* EventViewController.swift */; };
+		9F03F6AA1DD1AE880054A6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F03F6A91DD1AE880054A6B6 /* Artwork.swift */; };
 		9F66F5FF1DD14DA600A89383 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66F5FE1DD14DA600A89383 /* Event.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		84C34F451DAFE8BA00DCC04C /* EvenTown BC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EvenTown BC.entitlements"; sourceTree = "<group>"; };
 		84E9DF0C1DCD729B00037150 /* EventsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsCell.swift; sourceTree = "<group>"; };
 		84E9DF0E1DCD79B500037150 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		9F03F6A91DD1AE880054A6B6 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		9F66F5FE1DD14DA600A89383 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 			children = (
 				840A2A8C1DB05AB30043FF67 /* Video.swift */,
 				9F66F5FE1DD14DA600A89383 /* Event.swift */,
+				9F03F6A91DD1AE880054A6B6 /* Artwork.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				840A2A841DB022450043FF67 /* Extensions.swift in Sources */,
 				84C34F341DAFE8B000DCC04C /* AppDelegate.swift in Sources */,
 				844AC0091DCBC3BC0044BCF4 /* SubscriptionCell.swift in Sources */,
+				9F03F6AA1DD1AE880054A6B6 /* Artwork.swift in Sources */,
 				840A2A8A1DB0246C0043FF67 /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
