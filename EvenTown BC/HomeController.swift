@@ -14,6 +14,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let trendingCellId = "trendingCellId"
     let subscriptionCellId = "subscriptionCellId"
     let accountCellId = "accountCellId"
+    let eventsCellId = "eventsCellId"
     let titles = ["Home", "Trending", "Subscriptions", "Account"]
 
 
@@ -44,7 +45,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellId)
-        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellId)
+        collectionView?.register(EventsCell.self, forCellWithReuseIdentifier: eventsCellId)
         collectionView?.register(AccountCell.self, forCellWithReuseIdentifier: accountCellId)
         
         collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
@@ -81,15 +82,15 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func showControllerForSettings(setting: Setting)
     {
-        let dummySettingsViewController = UIViewController()
+        let dummySettingsViewController = EventViewController()
 
         if setting.name.rawValue == "Settings" {
             dummySettingsViewController.navigationItem.title = "Cumpleaños de Alex"
-
+            dummySettingsViewController.view.backgroundColor = .darkGray
         } else {
             dummySettingsViewController.navigationItem.title = setting.name.rawValue
+            dummySettingsViewController.view.backgroundColor = UIColor.white
         }
-        dummySettingsViewController.view.backgroundColor = UIColor.white
         
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
@@ -158,7 +159,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if indexPath.item == 1 {
             identifier = trendingCellId
         } else if indexPath.item == 2 {
-            identifier = subscriptionCellId
+            identifier = eventsCellId
         } else if indexPath.item == 3 {
             identifier = accountCellId
         } else {

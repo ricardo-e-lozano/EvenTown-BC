@@ -25,6 +25,9 @@ class ApiService: NSObject {
     func fetchSubscriptionFeed(completion: @escaping  ([Video]) -> ()) {
         fetchFeedForUrlString(urlString: "\(baseUrl)/subscriptions.json", completion: completion)
     }
+    func fetchEventsFeed(completion: @escaping  ([Video]) -> ()) {
+        fetchFeedForUrlString(urlString: "http://lozanet.com/test/events.json", completion: completion)
+    }
     
     func fetchFeedForUrlString(urlString: String, completion: @escaping  ([Video]) -> ()) {
         let url = URL(string: urlString)

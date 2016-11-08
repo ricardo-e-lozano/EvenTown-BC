@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIApplicationDelegate {
     
     lazy var  collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,9 +65,41 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         return 0
     }
     
+    
+    var navController: UINavigationController?
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let videoLauncher = VideoLauncher()
-        videoLauncher.showVideoPlayer()
+        
+        
+//        let videoLauncher = VideoLauncher()
+//        videoLauncher.showVideoPlayer()
+        
+        
+        let video = videos?[indexPath.item]
+        
+        navController = window?.rootViewController as! UINavigationController?
+        
+        let eventViewController = EventViewController()
+        eventViewController.navigationItem.title = (video?.title)! as String
+        eventViewController.setEventImage(imageUrl: (video?.thumbnail_image_name)! as String )
+        eventViewController.view.backgroundColor = .darkGray
+        
+        self.navController?.navigationBar.tintColor = UIColor.white
+        self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navController?.pushViewController(eventViewController, animated: true)
+
+        
+        
+        
+
+
+        
+        
+        
+        
+        
+        
     }
     
 }
