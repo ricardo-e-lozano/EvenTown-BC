@@ -17,6 +17,9 @@ class ApiService: NSObject {
     func fetchVideos(completion: @escaping  ([Video]) -> ()) {
         fetchFeedForUrlString(urlString: "\(baseUrl)/home_num_likes.json", completion: completion)
     }
+    func fetchEvents(completion: @escaping  ([Event]) -> ()) {
+        fetchEventFeedForUrlString(urlString: "http://lozanet.com/test/eventFeed.json", completion: completion)
+    }
     
     func fetchTrendingFeed(completion: @escaping  ([Video]) -> ()) {
         fetchFeedForUrlString(urlString: "\(baseUrl)/trending.json", completion: completion)
@@ -48,4 +51,24 @@ class ApiService: NSObject {
             }
             }.resume()
     }
+    func fetchEventFeedForUrlString(urlString: String, completion: @escaping  ([Event]) -> ()) {
+        let url = URL(string: urlString)
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            do {
+                if let unwrappedData = data, let jsonDictionaries = try JSONSerialization.jsonObject(with: unwrappedData, options: .mutableContainers) as? [[String: Any]] {
+                    
+                    DispatchQueue.main.async {
+                        completion(jsonDictionaries.map({return Event(dictionary: $0)}))
+                    }
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+            }.resume()
+    }
+
 }

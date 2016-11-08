@@ -15,7 +15,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let subscriptionCellId = "subscriptionCellId"
     let accountCellId = "accountCellId"
     let eventsCellId = "eventsCellId"
-    let titles = ["Home", "Trending", "Subscriptions", "Account"]
+    let titles = ["Home", "Trending", "Events", "Account"]
 
 
     override func viewDidLoad() {

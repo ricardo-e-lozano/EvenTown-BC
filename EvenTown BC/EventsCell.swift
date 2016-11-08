@@ -8,11 +8,11 @@
 
 import UIKit
 
-class EventsCell: FeedCell {
+class EventsCell: EventFeed {
         
-    override func fetchVideos() {
-        ApiService.sharedInstance.fetchEventsFeed { (videos: [Video]) in
-            self.videos = videos
+    override func fetchEvents() {
+        ApiService.sharedInstance.fetchEvents { (events: [Event]) in
+            self.events = events
             self.collectionView.reloadData()
         }
     }

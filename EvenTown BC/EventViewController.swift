@@ -21,12 +21,33 @@ class EventViewController: UIViewController, MKMapViewDelegate {
     
     let eventTitleLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Test Event Label"
         label.numberOfLines = 0
-        label.textAlignment = .center
+//        label.textAlignment = .center
         label.textColor = .darkGray
         
         return label
     }()
+    let eventTypeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Birthday Party"
+        label.numberOfLines = 0
+//        label.textAlignment = .center
+        label.textColor = .darkGray
+        return label
+    }()
+    let eventLocationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Bosque del Pino 444, Bosques del Sol, Mexicali, BC"
+        label.numberOfLines = 0
+//        label.textAlignment = .center
+        label.textColor = .darkGray
+        return label
+    }()
+
     
     var eventLocation:CLLocation = {
         let location = CLLocation(latitude: 21.282778, longitude: -157.829444)
@@ -75,7 +96,6 @@ class EventViewController: UIViewController, MKMapViewDelegate {
     
     func setupEventView() {
         
-//        view.addSubview(eventView)
 //        let width = view.frame.width
         let height = view.frame.width * 9 / 16
         view.addSubview(eventImage)
@@ -83,18 +103,24 @@ class EventViewController: UIViewController, MKMapViewDelegate {
         
         view.addSubview(eventTitleLabel)
         view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventTitleLabel)
+
+        view.addSubview(eventTypeLabel)
+        view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventTypeLabel)
+        
+        view.addSubview(eventLocationLabel)
+        view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventLocationLabel)
         
         view.addSubview(mapView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: mapView)
         
-        view.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(44)]-8-[v2(\(height*2))]", views: eventImage, eventTitleLabel, mapView)
+        view.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(44)]-8-[v2(44)]-8-[v3(44)]-8-[v4(\(height))]", views: eventImage, eventTitleLabel, eventTypeLabel, eventLocationLabel, mapView)
         
         centerMapOnLocation(location: eventLocation)
 
     }
     
     
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 500
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)

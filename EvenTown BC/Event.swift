@@ -8,26 +8,6 @@
 
 import UIKit
 
-//class SafeJsonObject: NSObject {
-//    override func setValue(_ value: Any?, forKey key: String) {
-//        let uppercasedFirstCharacter = String(key.characters.first!).uppercased()
-//        
-//        //        let range = Range(uncheckedBounds: (key.startIndex, key.index(key.startIndex, offsetBy: 1)))
-//        //        let selectorString = key.replacingCharacters(in: range, with: uppercasedFirstCharacter)
-//        
-//        let range = NSMakeRange(0, 1)
-//        let selectorString = NSString(string: key).replacingCharacters(in: range, with: uppercasedFirstCharacter)
-//        
-//        let selector = NSSelectorFromString("set\(selectorString):")
-//        let responds = self.responds(to: selector)
-//        if !responds {
-//            return
-//        }
-//        super.setValue(value, forKey: key)
-//    }
-//}
-
-
 class Event: SafeJsonObject {
     
     var thumbnail_image_name: String?
@@ -36,13 +16,17 @@ class Event: SafeJsonObject {
     var upload_date: NSDate?
     var duration: NSNumber?
     
-    var channel: Channel?
+    var publisher: Publisher?
+    var location: EventLocation?
     
     override func setValue(_ value: Any?, forKey key: String) {
-        if key == "channel" {
+        if key == "publisher" {
             //custom channel setup
-            self.channel = Channel()
-            channel?.setValuesForKeys(value as! [String: Any])
+            self.publisher = Publisher()
+            publisher?.setValuesForKeys(value as! [String: Any])
+        } else if key == "location" {
+            self.location = EventLocation()
+            location?.setValuesForKeys(value as! [String: Any])
         } else {
             super.setValue(value, forKey: key)
         }
@@ -56,7 +40,15 @@ class Event: SafeJsonObject {
     
 }
 
-//class Channel: SafeJsonObject {
-//    var name: String?
-//    var profile_image_name: String?
-//}
+class Publisher: SafeJsonObject {
+    var name: String?
+    var profile_image_name: String?
+}
+
+class EventLocation: SafeJsonObject {
+    var address: String?
+    var location_name: String?
+    var type: String?
+    var latitude: NSNumber?
+    var longitude: NSNumber?
+}

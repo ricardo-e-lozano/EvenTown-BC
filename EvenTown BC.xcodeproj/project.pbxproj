@@ -28,6 +28,9 @@
 		84E9DF0F1DCD79B500037150 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9DF0E1DCD79B500037150 /* EventViewController.swift */; };
 		9F03F6AA1DD1AE880054A6B6 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F03F6A91DD1AE880054A6B6 /* Artwork.swift */; };
 		9F66F5FF1DD14DA600A89383 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66F5FE1DD14DA600A89383 /* Event.swift */; };
+		9F66F6011DD26E4100A89383 /* eventFeed.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F66F6001DD26E4100A89383 /* eventFeed.json */; };
+		9F66F6031DD272E100A89383 /* EventFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66F6021DD272E100A89383 /* EventFeed.swift */; };
+		9F66F6051DD2737400A89383 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F66F6041DD2737400A89383 /* EventCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		84E9DF0E1DCD79B500037150 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9F03F6A91DD1AE880054A6B6 /* Artwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		9F66F5FE1DD14DA600A89383 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9F66F6001DD26E4100A89383 /* eventFeed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = eventFeed.json; path = ../../../../eventFeed.json; sourceTree = "<group>"; };
+		9F66F6021DD272E100A89383 /* EventFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFeed.swift; sourceTree = "<group>"; };
+		9F66F6041DD2737400A89383 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,9 +87,11 @@
 			isa = PBXGroup;
 			children = (
 				840A2A861DB023010043FF67 /* VideoCell.swift */,
+				9F66F6041DD2737400A89383 /* EventCell.swift */,
 				840A2A891DB0246C0043FF67 /* MenuBar.swift */,
 				84568C5A1DB7F98100E73A58 /* SettingCell.swift */,
 				847ECE041DC81B230065479E /* FeedCell.swift */,
+				9F66F6021DD272E100A89383 /* EventFeed.swift */,
 				844AC0061DCBC1410044BCF4 /* TrendingCell.swift */,
 				844AC0081DCBC3BC0044BCF4 /* SubscriptionCell.swift */,
 				846B15DA1DCD1CD600E0905E /* AccountCell.swift */,
@@ -115,6 +123,7 @@
 		842FF78C1DBAB1E0007B255A /* APIService */ = {
 			isa = PBXGroup;
 			children = (
+				9F66F6001DD26E4100A89383 /* eventFeed.json */,
 				842FF78D1DBAB223007B255A /* ApiService.swift */,
 			);
 			name = APIService;
@@ -222,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F66F6011DD26E4100A89383 /* eventFeed.json in Resources */,
 				84C34F3E1DAFE8B000DCC04C /* LaunchScreen.storyboard in Resources */,
 				84C34F3B1DAFE8B000DCC04C /* Assets.xcassets in Resources */,
 				84C34F391DAFE8B000DCC04C /* Main.storyboard in Resources */,
@@ -242,10 +252,12 @@
 				84568C5B1DB7F98100E73A58 /* SettingCell.swift in Sources */,
 				84E9DF0F1DCD79B500037150 /* EventViewController.swift in Sources */,
 				846B15DB1DCD1CD600E0905E /* AccountCell.swift in Sources */,
+				9F66F6031DD272E100A89383 /* EventFeed.swift in Sources */,
 				840A2A871DB023010043FF67 /* VideoCell.swift in Sources */,
 				9F66F5FF1DD14DA600A89383 /* Event.swift in Sources */,
 				84568C591DB6FF2000E73A58 /* SettingsLauncher.swift in Sources */,
 				841F94811DCC019D0087B589 /* VideoLauncher.swift in Sources */,
+				9F66F6051DD2737400A89383 /* EventCell.swift in Sources */,
 				84E9DF0D1DCD729B00037150 /* EventsCell.swift in Sources */,
 				842FF78E1DBAB223007B255A /* ApiService.swift in Sources */,
 				840A2A841DB022450043FF67 /* Extensions.swift in Sources */,

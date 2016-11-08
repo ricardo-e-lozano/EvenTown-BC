@@ -1,15 +1,15 @@
 //
-//  FeedCell.swift
-//  NetOps Status
+//  EventFeed.swift
+//  EvenTown BC
 //
-//  Created by Ricardo Lozano on 10/31/16.
+//  Created by Ricardo Lozano on 11/8/16.
 //  Copyright © 2016 Social Reality Inc. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIApplicationDelegate {
+class EventFeed: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIApplicationDelegate {
     
     lazy var  collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -20,23 +20,23 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         return cv
     }()
     
-    var videos: [Video]?
-
-    let cellId = "cellId"
+    var events: [Event]?
     
-    func fetchVideos()
+    let cellId = "eventCellId"
+    
+    func fetchEvents()
     {
-        ApiService.sharedInstance.fetchVideos { (videos: [Video]) in
-            self.videos = videos
+        ApiService.sharedInstance.fetchEvents { (events: [Event]) in
+            self.events = events
             self.collectionView.reloadData()
             
         }
     }
-
+    
     override func setupViews() {
         super.setupViews()
         
-        fetchVideos()
+        fetchEvents()
         
         backgroundColor = .brown
         
@@ -44,16 +44,16 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
         
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(EventCell.self, forCellWithReuseIdentifier: cellId)
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos?.count ?? 0
+        return events?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-        cell.video = videos?[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "eventCellId", for: indexPath) as! EventCell
+        cell.event = events?[indexPath.item]
         return cell
     }
     
@@ -73,22 +73,22 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-//        let videoLauncher = VideoLauncher()
-//        videoLauncher.showVideoPlayer()
+        //        let videoLauncher = VideoLauncher()
+        //        videoLauncher.showVideoPlayer()
         
         
-        let video = videos?[indexPath.item]
+        let event = events?[indexPath.item]
         
         navController = window?.rootViewController as! UINavigationController?
         
         let eventViewController = EventViewController()
-        let title = (video?.title)! as String
-        let eventImageURL = (video?.thumbnail_image_name)! as String
-        let hostName = (video?.channel?.name)! as String
-        let eventType = "Birthday Party"
-        let eventAddress = "Bosque del Pino 444, Bosques del Sol, Mexicali, BC"
-        let eventLocation = CLLocation(latitude: 32.6312, longitude: -115.3861)
-        let eventAnnotation = Artwork(title: title, locationName: hostName, discipline: eventType, coordinate: eventLocation.coordinate)
+        let title = (event?.title)! as String
+        let eventImageURL = (event?.thumbnail_image_name)! as String
+        let eventType = (event?.location?.type)! as String
+        let eventAddress = (event?.location?.address)! as String
+        let eventAddressName = (event?.location?.location_name)! as String
+        let eventLocation = CLLocation(latitude: CLLocationDegrees((event?.location?.latitude)! as NSNumber), longitude: CLLocationDegrees((event?.location?.longitude)! as NSNumber))
+        let eventAnnotation = Artwork(title: eventAddressName, locationName: eventAddress, discipline: eventType, coordinate: eventLocation.coordinate)
         
         
         eventViewController.navigationItem.title = title
@@ -104,12 +104,12 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
         self.navController?.navigationBar.tintColor = UIColor.white
         self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navController?.pushViewController(eventViewController, animated: true)
-
         
         
         
-
-
+        
+        
+        
         
         
         
@@ -119,8 +119,3 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
 }
-
-
-
-
-
