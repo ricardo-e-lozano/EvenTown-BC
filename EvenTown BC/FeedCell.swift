@@ -73,38 +73,38 @@ class FeedCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-//        let videoLauncher = VideoLauncher()
-//        videoLauncher.showVideoPlayer()
+        let videoLauncher = VideoLauncher()
+        videoLauncher.showVideoPlayer()
         
         
-        let video = videos?[indexPath.item]
-        
-        navController = window?.rootViewController as! UINavigationController?
-        
-        let eventViewController = EventViewController()
-        let title = (video?.title)! as String
-        let eventImageURL = (video?.thumbnail_image_name)! as String
-        let hostName = (video?.channel?.name)! as String
-        let eventType = "Birthday Party"
-        let eventAddress = "Bosque del Pino 444, Bosques del Sol, Mexicali, BC"
-        let eventLocation = CLLocation(latitude: 32.6312, longitude: -115.3861)
-        let eventAnnotation = Artwork(title: title, locationName: hostName, discipline: eventType, coordinate: eventLocation.coordinate)
-        
-        
-        eventViewController.navigationItem.title = title
-        eventViewController.eventImage.loadImageUsingUrlString(urlString: eventImageURL)
-        eventViewController.eventTitleLabel.text = title
-        eventViewController.eventTypeLabel.text = eventType
-        eventViewController.eventLocationLabel.text = eventAddress
-        eventViewController.eventLocation = eventLocation
-        eventViewController.mapView.addAnnotation(eventAnnotation)
-        
-        eventViewController.view.backgroundColor = .white
-        
-        self.navController?.navigationBar.tintColor = UIColor.white
-        self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        self.navController?.pushViewController(eventViewController, animated: true)
-
+//        let video = videos?[indexPath.item]
+//        
+//        navController = window?.rootViewController as! UINavigationController?
+//        
+//        let eventViewController = EventViewController()
+//        let title = (video?.title)! as String
+//        let eventImageURL = (video?.thumbnail_image_name)! as String
+//        let hostName = (video?.channel?.name)! as String
+//        let eventType = "Birthday Party"
+//        let eventAddress = "Bosque del Pino 444, Bosques del Sol, Mexicali, BC"
+//        let eventLocation = CLLocation(latitude: 32.6312, longitude: -115.3861)
+//        let eventAnnotation = Artwork(title: title, locationName: hostName, discipline: eventType, coordinate: eventLocation.coordinate)
+//        
+//        
+//        eventViewController.navigationItem.title = title
+//        eventViewController.eventImage.loadImageUsingUrlString(urlString: eventImageURL)
+//        eventViewController.eventTitleLabel.text = title
+//        eventViewController.eventTypeLabel.text = eventType
+//        eventViewController.eventLocationLabel.text = eventAddress
+//        eventViewController.eventLocation = eventLocation
+//        eventViewController.mapView.addAnnotation(eventAnnotation)
+//        
+//        eventViewController.view.backgroundColor = .white
+//        
+//        self.navController?.navigationBar.tintColor = UIColor.white
+//        self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+//        self.navController?.pushViewController(eventViewController, animated: true)
+//
         
         
         

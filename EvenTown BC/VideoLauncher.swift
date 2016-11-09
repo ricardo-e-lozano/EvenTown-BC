@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class VideoPlayerView: UIView {
+class VideoPlayerView: UIView, UINavigationControllerDelegate {
     
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -29,6 +29,18 @@ class VideoPlayerView: UIView {
         return button
     }()
     
+    lazy var closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "cancel")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .darkGray
+        button.isHidden = false
+        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        return button
+    }()
+    
+    
     var isPlaying = false
     
     func handlePause() {
@@ -43,6 +55,12 @@ class VideoPlayerView: UIView {
         
         isPlaying = !isPlaying
         
+    }
+    
+
+    
+    func handleClose() {
+        // find out how to close the fucking UIView :@ :@ :@
     }
     
     let controlsContainerView: UIView = {
@@ -69,6 +87,7 @@ class VideoPlayerView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
+    
     
     lazy var videoSlider: UISlider = {
         let slider = UISlider()
@@ -133,6 +152,13 @@ class VideoPlayerView: UIView {
         videoSlider.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         videoSlider.leftAnchor.constraint(equalTo: currentTimeLabel.rightAnchor).isActive = true
         videoSlider.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        controlsContainerView.addSubview(closeButton)
+        closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
+        closeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -2).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         
         backgroundColor = .black
@@ -218,6 +244,7 @@ class VideoLauncher: NSObject {
             
             let videoPlayerFrame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: keyWindow.frame.width * 9 / 16)
             let videoPlayerView = VideoPlayerView(frame: videoPlayerFrame)
+            
             view.addSubview(videoPlayerView)
 
             keyWindow.addSubview(view)

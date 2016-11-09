@@ -72,49 +72,17 @@ class EventFeed: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        //        let videoLauncher = VideoLauncher()
-        //        videoLauncher.showVideoPlayer()
-        
-        
         let event = events?[indexPath.item]
         
         navController = window?.rootViewController as! UINavigationController?
         
         let eventViewController = EventViewController()
-        let title = (event?.title)! as String
-        let eventImageURL = (event?.thumbnail_image_name)! as String
-        let eventType = (event?.location?.type)! as String
-        let eventAddress = (event?.location?.address)! as String
-        let eventAddressName = (event?.location?.location_name)! as String
-        let eventLocation = CLLocation(latitude: CLLocationDegrees((event?.location?.latitude)! as NSNumber), longitude: CLLocationDegrees((event?.location?.longitude)! as NSNumber))
-        let eventAnnotation = Artwork(title: eventAddressName, locationName: eventAddress, discipline: eventType, coordinate: eventLocation.coordinate)
-        
-        
-        eventViewController.navigationItem.title = title
-        eventViewController.eventImage.loadImageUsingUrlString(urlString: eventImageURL)
-        eventViewController.eventTitleLabel.text = title
-        eventViewController.eventTypeLabel.text = eventType
-        eventViewController.eventLocationLabel.text = eventAddress
-        eventViewController.eventLocation = eventLocation
-        eventViewController.mapView.addAnnotation(eventAnnotation)
-        
+        eventViewController.loadEventInfo(event: event!)
         eventViewController.view.backgroundColor = .white
         
         self.navController?.navigationBar.tintColor = UIColor.white
         self.navController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navController?.pushViewController(eventViewController, animated: true)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
     }
     

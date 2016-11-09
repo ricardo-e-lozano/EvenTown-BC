@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class EventViewController: UIViewController, MKMapViewDelegate {
-
+    
     let eventImage: CustomImageView = {
         let imageView = CustomImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,12 +19,36 @@ class EventViewController: UIViewController, MKMapViewDelegate {
         return imageView
     }()
     
+    let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Evento:"
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        return label
+    }()
+    let typeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Tipo:"
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        return label
+    }()
+    let locationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Dirección:"
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        return label
+    }()
     let eventTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Test Event Label"
         label.numberOfLines = 0
-//        label.textAlignment = .center
+        //        label.textAlignment = .center
         label.textColor = .darkGray
         
         return label
@@ -61,19 +85,28 @@ class EventViewController: UIViewController, MKMapViewDelegate {
     }()
 
 
-    func setEventImage(imageUrl: String)
-    {
-        eventImage.loadImageUsingUrlString(urlString: imageUrl)
-    }
-    func setTitleLabel(title: String) {
-        eventTitleLabel.text = title
-    }
-    func setEventLocation(location: CLLocation)
-    {
-        eventLocation = location
-    }
+//    func setEventImage(imageUrl: String)
+//    {
+//        eventImage.loadImageUsingUrlString(urlString: imageUrl)
+//    }
+//    func setTitleLabel(title: String) {
+//        eventTitleLabel.text = title
+//    }
+//    func setEventLocation(location: CLLocation)
+//    {
+//        eventLocation = location
+//    }
     
-
+    func loadEventInfo(event: Event)
+    {
+        navigationItem.title = event.title
+        eventImage.loadImageUsingUrlString(urlString: event.thumbnail_image_name!)
+        eventTitleLabel.text = event.title
+        eventTypeLabel.text = event.location?.type
+        eventLocationLabel.text = event.location?.address
+        eventLocation = CLLocation(latitude: CLLocationDegrees((event.location?.latitude)!), longitude: CLLocationDegrees((event.location?.longitude)!))
+        mapView.addAnnotation(Artwork(title: (event.location?.location_name)!, locationName: (event.location?.address)!, discipline: (event.location?.type)!, coordinate: eventLocation.coordinate))
+    }
     
     
     
@@ -97,23 +130,28 @@ class EventViewController: UIViewController, MKMapViewDelegate {
     func setupEventView() {
         
 //        let width = view.frame.width
-        let height = view.frame.width * 9 / 16
+        let height = Int(view.frame.width * 9 / 16)
         view.addSubview(eventImage)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: eventImage)
         
-        view.addSubview(eventTitleLabel)
-        view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventTitleLabel)
-
-        view.addSubview(eventTypeLabel)
-        view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventTypeLabel)
         
+        view.addSubview(nameLabel)
+        view.addSubview(eventTitleLabel)
+        view.addConstraintsWithFormat(format: "H:|-16-[v0(100)]-8-[v1]-8-|", views: nameLabel, eventTitleLabel)
+
+        view.addSubview(typeLabel)
+        view.addSubview(eventTypeLabel)
+        view.addConstraintsWithFormat(format: "H:|-16-[v0(100)]-8-[v1]-8-|", views: typeLabel, eventTypeLabel)
+        
+        view.addSubview(locationLabel)
         view.addSubview(eventLocationLabel)
-        view.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: eventLocationLabel)
+        view.addConstraintsWithFormat(format: "H:|-16-[v0(100)]-8-[v1]-8-|", views: locationLabel, eventLocationLabel)
         
         view.addSubview(mapView)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: mapView)
         
         view.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(44)]-8-[v2(44)]-8-[v3(44)]-8-[v4(\(height))]", views: eventImage, eventTitleLabel, eventTypeLabel, eventLocationLabel, mapView)
+        view.addConstraintsWithFormat(format: "V:|-\(height+8)-[v0(44)]-8-[v1(44)]-8-[v2(44)]-8-[v3(44)]-|", views: nameLabel, typeLabel, locationLabel, locationLabel)
         
         centerMapOnLocation(location: eventLocation)
 
